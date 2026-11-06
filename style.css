@@ -1,0 +1,188 @@
+/* ---------- Colors: change these and the whole site updates ---------- */
+:root {
+  --navy: #0d2740;        /* dark header background */
+  --navy-2: #17456b;      /* lighter navy for the gradient */
+  --gold: #f0b94d;        /* highlight color */
+  --teal: #0e7c86;        /* links and accents */
+  --bg: #eaf1f7;          /* page background */
+  --panel: #ffffff;       /* content boxes */
+  --ink: #17232e;         /* main text */
+  --muted: #5b6b79;       /* secondary text */
+  --line: #d5e0ea;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  background:
+    radial-gradient(circle at 90% 0%, #d8e8f4 0, transparent 40%),
+    var(--bg);
+}
+
+/* ---------- Top bar ---------- */
+.site-header { background: var(--navy); }
+
+.site-header nav {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.site-header a {
+  color: #b7c9da;
+  text-decoration: none;
+  font-weight: 600;
+}
+.site-header a:hover { color: #fff; }
+.site-header a[aria-current="page"] {
+  color: #fff;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ---------- Hero band (dark background with a signal-wave pattern) ---------- */
+.hero {
+  color: #fff;
+  background-color: var(--navy);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 30 C 20 0, 40 0, 60 30 S 100 60, 120 30 S 160 0, 180 30 S 220 60, 240 30' fill='none' stroke='%23ffffff' stroke-opacity='0.07' stroke-width='2'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  background-size: 240px 60px, cover;
+  padding: 3rem 1.25rem 4.5rem;
+}
+
+.hero-inner { max-width: 50rem; margin: 0 auto; }
+.hero-small { padding: 2rem 1.25rem 3.5rem; }
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--gold);
+  background: #fff;
+  flex-shrink: 0;
+}
+
+h1, h2, h3 {
+  font-family: "Source Serif 4", Georgia, serif;
+  line-height: 1.25;
+}
+
+h1 { margin: 0 0 0.4rem; font-size: 2.4rem; }
+.role { margin: 0; color: #c9d8e6; }
+
+/* ---------- Content boxes (pulled up over the hero) ---------- */
+main {
+  max-width: 50rem;
+  margin: -2.2rem auto 0;
+  padding: 0 1.25rem;
+}
+
+main > section,
+main > p {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin: 0 0 1.25rem;
+}
+
+main > p { padding: 1rem 1.75rem; }
+
+h2 {
+  margin: 0 0 0.9rem;
+  font-size: 1.35rem;
+  color: var(--navy);
+  display: inline-block;
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 0.15rem;
+}
+
+h3 { margin: 0; font-size: 1.05rem; }
+
+/* ---------- Links ---------- */
+a { color: var(--teal); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- Lists ---------- */
+ul { padding-left: 1.2rem; margin: 0; }
+li { margin-bottom: 0.4rem; }
+li::marker { color: var(--teal); }
+
+.timeline { list-style: none; padding: 0 0 0 1.1rem; border-left: 3px solid var(--line); }
+.timeline li { margin-bottom: 1.1rem; position: relative; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -1.55rem;
+  top: 0.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--panel);
+}
+.meta { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.pubs li { margin-bottom: 1rem; }
+
+.wave { display: none; }
+
+/* ---------- Footer ---------- */
+footer {
+  max-width: 50rem;
+  margin: 2rem auto 0;
+  padding: 1.5rem 1.25rem 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  body { font-size: 1rem; }
+  h1 { font-size: 1.9rem; }
+  .profile { flex-direction: column; align-items: flex-start; }
+  main > section, main > p { padding: 1.2rem; }
+}
+
+/* ---------- Gallery ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));  /* as many columns as fit */
+  gap: 1rem;
+}
+
+.gallery figure { margin: 0; }
+
+.gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;          /* crops neatly without stretching */
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  transition: transform 0.2s ease;
+}
+
+.gallery a:hover img { transform: scale(1.03); }
+
+.gallery figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
